@@ -19,6 +19,8 @@ struct user {
 int cardtype(int array[52]);
 int drawcard(int array[52]);
 
+
+//function for each round of playing
 void deal(int array[52]) {
 
   int total = 0;
@@ -32,6 +34,8 @@ void deal(int array[52]) {
   printf("******************");
   printf("\n");
   printf("*The dealer shuffles the cards and and you are dealt your hand*\n");
+  
+  //player drawing inital hand
   printf("You have drawn a");
   int c1 = cardtype(array);
   ctotal += c1;
@@ -41,6 +45,8 @@ void deal(int array[52]) {
   printf(".\n");
   ctotal += c2;
 
+  
+  //setting variables values depending on how many Ace's the player draws
   if (c1 == 11 && c2 == 11) {
     acheck = 2;
     ctotal -= 10;
@@ -54,6 +60,7 @@ void deal(int array[52]) {
     acheck = 1;
   }
 
+  //dealer drawing initial hand
   printf("The dealer draws a");
   int d1 = cardtype(array);
   printf(".\n");
@@ -74,6 +81,8 @@ void deal(int array[52]) {
   else {
     char playcheck[50];
 
+    
+    //loop for player drawing a card
     while (1) {
       while (1) {
         printf("************\n");
@@ -119,7 +128,8 @@ void deal(int array[52]) {
         break;
       }
     }
-
+    
+    //loop for dealer drawing a card
     if (strcmp(playcheck, "0\n") == 0) {
       while (1) {
 
@@ -152,6 +162,7 @@ void deal(int array[52]) {
       }
     }
 
+    //once dealer and player have reached tehheir final hand, winner/loser is decided
     if (dtotal > ctotal && dtotal <= 21) {
       printf("The dealer has won this round. \n");
     }
@@ -184,6 +195,7 @@ void deal(int array[52]) {
   }
 }
 
+//function used to draw each card in the cardtype function
 int drawcard(int array[52]) {
 
   int r = 0;
@@ -215,6 +227,7 @@ int drawcard(int array[52]) {
   return r;
 }
 
+//function to determine user bet
 void setbet() {
   bet = 0;
   int check = 1;
@@ -242,6 +255,7 @@ void setbet() {
   money = money - bet;
 }
 
+//function where user plays the game
 void play() {
 
   // for new users, initial balance will be $100
@@ -278,7 +292,7 @@ void play() {
     bet = 0;
     char qc[50];
 
-    // two functions that repeat each round
+    // two functions that are repeat for each round of playing
     setbet();
     deal(array);
 
@@ -513,6 +527,7 @@ void finduser(struct user *h) {
   }
 }
 
+//function to add a new user to the leaderboard list
 void adduser(struct user *head) {
 
   char name2[50];
@@ -542,12 +557,14 @@ void adduser(struct user *head) {
   temp->money = money;
   temp->next = NULL;
 
+  
   if (filecheck == 1) {
     strcpy(head->name, name2);
     head->money = money;
     head->next = NULL;
   }
 
+  //adding the new user in the leaderboard in order of money amount.
   else {
     struct user *temp2 = malloc(sizeof(struct user));
     temp2 = head;
@@ -570,6 +587,7 @@ void adduser(struct user *head) {
   }
 }
 
+// function updating an existing players money on the leaderboard
 void updateLeaderboard(struct user *head) {
 
   struct user *temp0 = head;
@@ -587,6 +605,7 @@ void updateLeaderboard(struct user *head) {
   
 }
 
+//function to add the leaderboard list back to the file
 void addtofile(struct user *head) {
 
   FILE *f;
@@ -607,6 +626,8 @@ void addtofile(struct user *head) {
   }
 }
 
+
+//main function
 int main() {
   struct user *headnode = NULL;
   FILE *f;
@@ -619,6 +640,7 @@ int main() {
     return 0;
   }
 
+  //obtain the leaderboard from a txt file
   headnode = fileread(f);
   if (headnode == NULL) {
     filecheck = 1;
