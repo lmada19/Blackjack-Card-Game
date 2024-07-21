@@ -33,9 +33,6 @@ There are several outcomes in this version of the game. Each outcome will make y
 
 
 *Note*
-
 - Unlike traditional Blackjack, there is no doubling down, splitting, or insurance bets in this programmed version of the card game.
-
-- Issue with Leaderboard: Leaderboard file will not rearrange order for EXISTING users after playing. (May be out of order in terms of balance on account for each player).
 
 - To play, simply run the code and follow instructions given on screen.
