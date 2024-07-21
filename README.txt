@@ -1,7 +1,7 @@
 BLACKJACK:
 ~ C-Programmed Card Game ~
 
-Created by: Lalit Mada
+Created, Coded, and Updated by: Lalit Mada
 
 This program simulates the popular card game, Blackjack. The user will bet money and can compete for a high-score on the provided leaderboard file.
 
